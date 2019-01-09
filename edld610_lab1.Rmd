@@ -1,0 +1,18 @@
+---
+title: "edld610_lab1"
+author: "Cameron Kay"
+date: "1/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#load packages
+library(rio)
+library(here)
+library(tidyverse)
+
+#load data
+df <- import(here("data", "rstats_tweets.rds")) %>%
+  janitor::clean_names()
+```
+
