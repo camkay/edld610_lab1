@@ -23,6 +23,8 @@ df <- import(here::here("data", "rstats_tweets.rds")) %>%
   janitor::clean_names()
 ```
 
+### Commit 2 (Ash)
+
 ```{r commit2}
 df %>%
   count(screen_name) %>%
@@ -33,6 +35,8 @@ df %>%
     geom_col() +
     coord_flip()
 ```
+
+### Commit 3 (Cam)
 
 ```{r commit3, fig.width = 10, fig.height = 10}
 df %>%
@@ -51,6 +55,8 @@ df %>%
          caption  = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
 
+### Commit 4 (Lea)
+
 ```{r commit4}
 # Commit 4
 df$month <- round_date(df$created_at, unit = "month")
@@ -66,6 +72,8 @@ numtweets %>%
   geom_line() +
   geom_smooth()
 ```
+
+### Commit 5 (Lea)
 
 ```{r commit5, fig.width = 10, fig.height = 10}
 numtweets %>% 
