@@ -1,8 +1,14 @@
 ---
 title: "edld610_lab1"
-author: "Cameron Kay"
+author: "Cameron Kay, Lea Frank, and Ashley Miller"
 date: "1/9/2019"
-output: html_document
+output:
+  html_document:
+    highlight: zenburn
+    theme: lumen
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}
