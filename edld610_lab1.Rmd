@@ -67,12 +67,6 @@ numtweets %>%
   geom_smooth()
 ```
 
-Modify the plot so it matches the below.
-Use theme_minimal
-Add the area with the appropriate function and 30% transparency
-Use "gray40", "cornflowerblue", and "magenta"
-
-
 ```{r commit5, fig.width = 10, fig.height = 10}
 numtweets %>% 
   ggplot(aes(x = month, y = n)) +
