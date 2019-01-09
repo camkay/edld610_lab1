@@ -10,9 +10,26 @@ output: html_document
 library(rio)
 library(here)
 library(tidyverse)
+library(lubridate)
 
 #load data
-df <- import(here("data", "rstats_tweets.rds")) %>%
+df <- import(here::here("data", "rstats_tweets.rds")) %>%
   janitor::clean_names()
+```
+
+```{r}
+# Commit 4
+df$month <- round_date(df$created_at, unit = "month")
+df <- df %>% 
+  filter(month < as_datetime("2019-01-01"))
+
+numtweets <- df %>% 
+  group_by(month) %>% 
+  count()
+
+numtweets %>% 
+  ggplot(aes(x = month, y = n)) +
+  geom_line() +
+  geom_smooth()
 ```
 
