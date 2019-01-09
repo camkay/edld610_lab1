@@ -16,3 +16,25 @@ df <- import(here("data", "rstats_tweets.rds")) %>%
   janitor::clean_names()
 ```
 
+Some guidance: *You’ll want to count the number of times a screen name appears and select only the top 25*. 
+  * First pull Commit 1, then reproduce the following figure.
+  * You’ll want to count the number of times a screen name appears and select only the top 25.
+  * Consider arranging in descending order, then using  dplyr::slice
+  * Make the screen name a factor, ordered according to the number of times it appears.
+  * Consider forcats::fct_reorder
+  * coord_flip will be your friend here
+
+```{r commit2}
+
+df %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  dplyr::slice(1:25) %>%
+  mutate(screen_name = factor(screen_name)) %>%
+  ggplot(aes(x = forcats::fct_reorder(screen_name, n), y = n)) +
+    geom_col() +
+    coord_flip()
+
+
+```
+
