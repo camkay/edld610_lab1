@@ -10,19 +10,18 @@ output: html_document
 library(rio)
 library(here)
 library(tidyverse)
+library(lubridate)
 
 #load data
-df <- import(here("data", "rstats_tweets.rds")) %>%
+df <- import(here::here("data", "rstats_tweets.rds")) %>%
   janitor::clean_names()
 ```
 
-Some guidance: *You’ll want to count the number of times a screen name appears and select only the top 25*. 
-  * First pull Commit 1, then reproduce the following figure.
-  * You’ll want to count the number of times a screen name appears and select only the top 25.
-  * Consider arranging in descending order, then using  dplyr::slice
-  * Make the screen name a factor, ordered according to the number of times it appears.
-  * Consider forcats::fct_reorder
-  * coord_flip will be your friend here
+```{r}
+# Commit 4
+df$month <- round_date(df$created_at, unit = "month")
+df <- df %>% 
+  filter(month < as_datetime("2019-01-01"))
 
 ```{r commit2}
 
@@ -36,5 +35,16 @@ df %>%
     coord_flip()
 
 
+```
+
+
+numtweets <- df %>% 
+  group_by(month) %>% 
+  count()
+
+numtweets %>% 
+  ggplot(aes(x = month, y = n)) +
+  geom_line() +
+  geom_smooth()
 ```
 
