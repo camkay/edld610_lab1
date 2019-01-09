@@ -28,8 +28,21 @@ df %>%
     coord_flip()
 ```
 
-```{r commit3}
-
+```{r commit3, fig.width = 10, fig.height = 10}
+df %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  dplyr::slice(1:25) %>%
+  mutate(screen_name = factor(screen_name)) %>%
+  ggplot(aes(x = forcats::fct_reorder(screen_name, n), y = n)) +
+    geom_col(fill = "cornflowerblue", alpha = .8) +
+    coord_flip() +
+    theme_minimal(base_size = 15) +
+    labs(title    = "Most prolific #rstats tweets",
+         subtitle = "Top 25 screen names displayed",
+         y        = "Count",
+         x        = "Twitter Screen Name",
+         caption  = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
 
 ```{r commit4}
