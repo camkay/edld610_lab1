@@ -17,14 +17,7 @@ df <- import(here::here("data", "rstats_tweets.rds")) %>%
   janitor::clean_names()
 ```
 
-```{r}
-# Commit 4
-df$month <- round_date(df$created_at, unit = "month")
-df <- df %>% 
-  filter(month < as_datetime("2019-01-01"))
-
 ```{r commit2}
-
 df %>%
   count(screen_name) %>%
   arrange(desc(n)) %>%
@@ -33,10 +26,17 @@ df %>%
   ggplot(aes(x = forcats::fct_reorder(screen_name, n), y = n)) +
     geom_col() +
     coord_flip()
+```
 
+```{r commit3}
 
 ```
 
+```{r commit4}
+# Commit 4
+df$month <- round_date(df$created_at, unit = "month")
+df <- df %>% 
+  filter(month < as_datetime("2019-01-01"))
 
 numtweets <- df %>% 
   group_by(month) %>% 
@@ -47,4 +47,12 @@ numtweets %>%
   geom_line() +
   geom_smooth()
 ```
+
+```{r commit5}
+
+```
+
+
+
+
 
