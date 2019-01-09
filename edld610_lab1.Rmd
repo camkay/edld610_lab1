@@ -48,8 +48,23 @@ numtweets %>%
   geom_smooth()
 ```
 
-```{r commit5}
+Modify the plot so it matches the below.
+Use theme_minimal
+Add the area with the appropriate function and 30% transparency
+Use "gray40", "cornflowerblue", and "magenta"
 
+
+```{r commit5, fig.width = 10, fig.height = 10}
+numtweets %>% 
+  ggplot(aes(x = month, y = n)) +
+  geom_area(stat = "identity", fill = "cornflowerblue", alpha = .3) +
+  geom_line(color = "gray40", size = 1.5) +
+  geom_smooth(se = FALSE, color = "magenta", size = 1.5) +
+  theme_minimal(base_size = 18) +
+  labs(y = "Number of #rstat tweets", 
+       x = "Year (summarized by month)",
+       title = "Growth of the #rstats hashtag on twitter over time",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday")
 ```
 
 
